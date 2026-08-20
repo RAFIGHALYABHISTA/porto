@@ -2,15 +2,29 @@ import { WAKATIME_ACCOUNT } from "@/common/constants/wakatime";
 import axios from "axios";
 import { unstable_cache } from "next/cache";
 
-const { api_key, base_url, all_time_endpoint, stats_endpoint } =
+const { api_key, username, base_url, all_time_endpoint, stats_endpoint } =
   WAKATIME_ACCOUNT;
 
+// Create Basic Auth header
+const getAuthHeader = () => {
+  if (!api_key || !username) return undefined;
+  const credentials = `${username}:${api_key}`;
+  const encoded = Buffer.from(credentials).toString("base64");
+  return `Basic ${encoded}`;
+};
+
 const fetchReadStats = async () => {
+  const authHeader = getAuthHeader();
+  if (!authHeader) {
+    console.error("Wakatime API key or username not configured");
+    return { data: {} as any };
+  }
+
   try {
     const response = await axios.get(
       `${base_url}${stats_endpoint}/last_7_days`,
       {
-        headers: { Authorization: `Basic ${api_key}` },
+        headers: { Authorization: authHeader },
       },
     );
 
@@ -39,9 +53,15 @@ const fetchReadStats = async () => {
 };
 
 const fetchAllTimeSinceToday = async () => {
+  const authHeader = getAuthHeader();
+  if (!authHeader) {
+    console.error("Wakatime API key or username not configured");
+    return { data: {} as any };
+  }
+
   try {
     const response = await axios.get(`${base_url}${all_time_endpoint}`, {
-      headers: { Authorization: `Basic ${api_key}` },
+      headers: { Authorization: authHeader },
     });
 
     const getData = response.data;

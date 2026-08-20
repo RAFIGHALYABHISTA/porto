@@ -14,10 +14,10 @@ const Story = () => {
         </div>
       ))}
       <Image
-        src="/images/signature.png"
+        src="/images/ttd1.png"
         alt="signature"
-        width={100}
-        height={100}
+        width={200}
+        height={200}
       />
     </section>
   );

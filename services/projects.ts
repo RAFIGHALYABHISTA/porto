@@ -9,13 +9,14 @@ export const getProjectsData = async () => {
   if (!data) return [];
 
   return data.map((item) => {
-    const { data: imageData } = supabase.storage
-      .from("projects")
-      .getPublicUrl(`${item.slug}.webp`);
+    // Use local images from public/images folder
+    const imageUrl = `/images/projects/${item.slug}.png`;
+    
+    console.log(`Image URL for ${item.slug}:`, imageUrl);
 
     return {
       ...item,
-      image: imageData.publicUrl,
+      image: imageUrl,
     };
   });
 };
@@ -29,15 +30,31 @@ export const getProjectsDataBySlug = async (slug: string) => {
     .eq("slug", slug)
     .single();
 
-  if (error) throw new Error(error.message);
-  if (!data) return null;
+  // Handle case where no data found (not an error)
+  if (error && error.code !== 'PGRST116') {
+    console.error('Error fetching project by slug:', error);
+    throw new Error(error.message);
+  }
+  if (!data) {
+    console.log(`No project found with slug: ${slug}`);
+    return null;
+  }
 
-  const { data: imageData } = supabase.storage
+  const { data: imageDataWebp } = supabase.storage
     .from("projects")
     .getPublicUrl(`${data.slug}.webp`);
+  
+  const { data: imageDataPng } = supabase.storage
+    .from("projects")
+    .getPublicUrl(`${data.slug}.png`);
+
+  // Use local images from public/images folder
+  const imageUrl = `/images/projects/${data.slug}.png`;
+  
+  console.log(`Image URL for ${slug}:`, imageUrl);
 
   return {
     ...data,
-    image: imageData.publicUrl,
+    image: imageUrl,
   };
 };

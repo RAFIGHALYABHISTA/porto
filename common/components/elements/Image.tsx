@@ -9,7 +9,7 @@ interface ImageProps extends NextImageProps {
 }
 
 const Image = (props: ImageProps) => {
-  const { alt, src, className, rounded, ...rest } = props;
+  const { alt, src, className, rounded, priority, ...rest } = props;
   const [isLoading, setLoading] = useState(true);
 
   return (
@@ -33,7 +33,7 @@ const Image = (props: ImageProps) => {
         alt={alt}
         loading="lazy"
         quality={100}
-        // priority
+        priority={priority} // Add priority support
         onLoad={() => setLoading(false)}
         {...rest}
       />

@@ -7,6 +7,7 @@ export const GET = async (req: NextRequest) => {
 
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
+    console.error("Error in /api/achievements/categories:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 },

@@ -29,10 +29,20 @@ const ProjectDetail = ({
             {stacks.map((stack: string, index: number) => {
               const stackData = STACKS[stack];
 
+              if (!stackData) {
+                return (
+                  <Tooltip title={stack} key={index}>
+                    <div className="text-neutral-500 text-sm px-2 py-1">
+                      {stack}
+                    </div>
+                  </Tooltip>
+                );
+              }
+
               return (
                 <Tooltip title={stack} key={index}>
                   <div className={`${stackData.color}`}>
-                    {STACKS[stack].icon}
+                    {stackData?.icon}
                   </div>
                 </Tooltip>
               );

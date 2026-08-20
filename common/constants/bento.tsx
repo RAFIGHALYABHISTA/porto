@@ -2,13 +2,10 @@ import dynamic from "next/dynamic";
 import {
   BiUser as AboutIcon,
   BiCollection as ProjectIcon,
-  BiCategory as DashboardIcon,
   BiBook as ContactIcon,
 } from "react-icons/bi";
-import { PiChatTeardropDotsBold as ChatRoomIcon } from "react-icons/pi";
 import { PiCertificate as AchievementIcon } from "react-icons/pi";
 
-import ChatPreview from "@/modules/home/components/Bento/ChatPreview";
 import MarqueeIcons from "@/modules/home/components/Bento/MarqueeIcons";
 import AchievementFolder from "@/modules/home/components/Bento/AchievementFolder";
 
@@ -47,7 +44,7 @@ export const BENTO: BentoItemProps[] = [
     title: "Skills & Tools",
     description: "Covering mobile, web, AI, and UI/UX technologies.",
     label: "Stack",
-    icon: <DashboardIcon size={size} />,
+    icon: <ContactIcon size={size} />,
     visual: <MarqueeIcons />,
     href: "/",
     colSpan: 1,
@@ -63,17 +60,6 @@ export const BENTO: BentoItemProps[] = [
     href: "/achievements",
     colSpan: 1,
     className: "from-yellow-400 to-orange-500",
-    isShow: true,
-  },
-  {
-    title: "Chat Room",
-    description: "Open space to talk and collaborate.",
-    label: "Chat",
-    icon: <ChatRoomIcon size={size} />,
-    visual: <ChatPreview />,
-    href: "/chat",
-    colSpan: 1,
-    className: "from-gray-700 to-gray-900",
     isShow: true,
   },
   {

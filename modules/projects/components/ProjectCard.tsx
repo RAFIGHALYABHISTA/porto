@@ -13,13 +13,13 @@ const ProjectCard = ({
   slug,
   description,
   image,
-  stacks,
+  stacks = [],
   is_featured,
 }: ProjectItem) => {
   const t = useTranslations("ProjectsPage");
 
   const trimmedContent =
-    description.slice(0, 85) + (description.length > 85 ? "..." : "");
+    (description || "").slice(0, 85) + ((description || "").length > 85 ? "..." : "");
 
   return (
     <Link href={`/projects/${slug}`}>
@@ -32,8 +32,8 @@ const ProjectCard = ({
         )}
         <div className="relative">
           <Image
-            src={image}
-            alt={title}
+            src={image || "/placeholder.jpg"}
+            alt={title || ""}
             width={450}
             height={200}
             className="h-[200px] w-full rounded-t-xl object-cover"
@@ -51,8 +51,16 @@ const ProjectCard = ({
             {trimmedContent}
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-2">
-            {stacks.map((stack: string, index: number) => {
+            {stacks?.map((stack: string, index: number) => {
               const stackData = STACKS[stack];
+
+              if (!stackData) {
+                return (
+                  <div key={index} className="text-neutral-500 text-sm">
+                    {stack}
+                  </div>
+                );
+              }
 
               return (
                 <div key={index} className={`${stackData.color}`}>

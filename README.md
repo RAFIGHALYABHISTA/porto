@@ -43,23 +43,14 @@ This website is built using these technologies:
 
 ## 🚀 Features
 
-### 🕗 Wakatime Statistics
-Displays live coding statistics from Wakatime using serverless API routes in Next.js.
-
-### 🗳 Project Showcase
+###  Project Showcase
 Projects are stored in a Supabase PostgreSQL database. Uses ISR (1s revalidation) and SSR for optimal performance.
 
 ### 🌍 Internationalization
 Supports multiple languages using `next-intl`. Easily extendable to support additional locales.
 
-### 📊 Developer Dashboard
-Interactive dashboard visualizing:
-- GitHub contributions
-- Wakatime data
-- Codewars stats
-- Monkeytype typing stats
-
-Each stat is retrieved using public APIs and visualized in a user-friendly way.
+### 🏆 Achievements
+Display certificates and badges earned throughout professional and academic journey.
 
 ---
 

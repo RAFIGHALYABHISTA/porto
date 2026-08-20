@@ -28,7 +28,7 @@ export const getAchievementsData = async ({
   return data.map((item) => {
     const { data: imageData } = supabase.storage
       .from("achievements")
-      .getPublicUrl(`${item.slug}.webp`);
+      .getPublicUrl(item.slug);
 
     return {
       ...item,
@@ -38,27 +38,29 @@ export const getAchievementsData = async ({
 };
 
 export const getAchivementTypes = async () => {
-  const supabase = createClient();
+  return ["certificate", "badge", "award"];
+  // const supabase = createClient();
 
-  const { data, error } = await supabase.rpc("get_enum_values", {
-    type_name: "achievement_type",
-  });
+  // const { data, error } = await supabase.rpc("get_enum_values", {
+  //   type_name: "achievement_type",
+  // });
 
-  if (error) throw new Error(error.message);
-  if (!data) return [];
+  // if (error) throw new Error(error.message);
+  // if (!data) return [];
 
-  return data.map((item: EnumItem) => item.enum_value);
+  // return data.map((item: EnumItem) => item.enum_value);
 };
 
 export const getAchivementCategories = async () => {
-  const supabase = createClient();
+  return ["education", "professional", "personal"];
+  // const supabase = createClient();
 
-  const { data, error } = await supabase.rpc("get_enum_values", {
-    type_name: "achievement_category",
-  });
+  // const { data, error } = await supabase.rpc("get_enum_values", {
+  //   type_name: "achievement_category",
+  // });
 
-  if (error) throw new Error(error.message);
-  if (!data) return [];
+  // if (error) throw new Error(error.message);
+  // if (!data) return [];
 
-  return data.map((item: EnumItem) => item.enum_value);
+  // return data.map((item: EnumItem) => item.enum_value);
 };

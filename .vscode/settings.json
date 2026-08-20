@@ -1,0 +1,8 @@
+{
+    "terminal.integrated.profiles.windows": {
+    "Cmder": {
+      "path": "C:\\Users\\rafi ghaly\\Downloads\\cmder"
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Cmder"
+}

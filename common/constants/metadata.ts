@@ -1,16 +1,16 @@
 export const METADATA = {
-  creator: "Satria Bahari",
+  creator: "Rafi Ghaly Abhista",
   description: "Personal website, portfolio, blog",
-  keyword: "satria, satria bahari",
+  keyword: "rafi, rafi ghaly",
   authors: {
-    name: "Satria Bahari",
+    name: "Rafi Ghaly Abhista",
     url: process.env.DOMAIN,
   },
   openGraph: {
     url: process.env.DOMAIN,
-    siteName: "Satria Bahari",
+    siteName: "Rafi Ghaly Abhista",
     locale: "id-ID",
   },
-  exTitle: "| Satria Bahari",
-  profile: "/images/satria.jpg",
+  exTitle: "| Rafi Ghaly Abhista",
+  profile: "/images/rafi.jpg",
 };

@@ -38,6 +38,24 @@ export const generateMetadata = async ({
 
 const getProjectDetail = async (slug: string): Promise<ProjectItem> => {
   const projects = await getProjectsDataBySlug(slug);
+  
+  if (!projects) {
+    // Return default project structure instead of throwing error
+    return {
+      id: 0,
+      title: "Project Not Found",
+      slug: slug,
+      description: "The requested project could not be found.",
+      image: "/placeholder.jpg",
+      link_demo: null,
+      link_github: null,
+      stacks: [],
+      content: null,
+      is_show: false,
+      is_featured: false,
+    };
+  }
+  
   const contents = loadMdxFiles();
   const content = contents.find((item) => item.slug === slug);
   const response = { ...projects, content: content?.content };

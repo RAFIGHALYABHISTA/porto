@@ -54,6 +54,7 @@ const AchievementCard = ({
                 alt={name}
                 width={500}
                 height={250}
+                priority={image === "/images/ppp.jpeg"} // Add priority for LCP image
                 className="min-h-[180px] w-full rounded-t-xl object-cover transition-transform duration-500 group-hover:scale-105 md:h-[170px]"
               />
             </motion.div>

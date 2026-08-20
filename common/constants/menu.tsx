@@ -2,10 +2,8 @@ import {
   BiHomeCircle as HomeIcon,
   BiUser as AboutIcon,
   BiCollection as ProjectIcon,
-  BiCategory as DashboardIcon,
   BiBook as ContactIcon,
 } from "react-icons/bi";
-import { PiChatTeardropDotsBold as ChatRoomIcon } from "react-icons/pi";
 import { PiCertificate as AchievementIcon } from "react-icons/pi";
 import { VscHubot as SmartChatIcon } from "react-icons/vsc";
 
@@ -45,22 +43,6 @@ export const MENU_ITEMS: MenuItemProps[] = [
     isShow: true,
     isExternal: false,
     eventName: "Pages: Projects",
-  },
-  {
-    title: "Dashboard",
-    href: "/dashboard",
-    icon: <DashboardIcon size={iconSize} />,
-    isShow: true,
-    isExternal: false,
-    eventName: "Pages: Dashboard",
-  },
-  {
-    title: "Chat Room",
-    href: "/chat",
-    icon: <ChatRoomIcon size={iconSize} />,
-    isShow: true,
-    isExternal: false,
-    eventName: "Pages: Chat Room",
   },
   {
     title: "Contact",
