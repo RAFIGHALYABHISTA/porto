@@ -12,18 +12,34 @@ export const createClient = () => {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet: { name: string; value: string; options?: any }[]) {
+
+        setAll(
+          cookiesToSet: {
+            name: string;
+            value: string;
+            options?: {
+              domain?: string;
+              encode?: (value: string) => string;
+              expires?: Date;
+              httpOnly?: boolean;
+              maxAge?: number;
+              path?: string;
+              sameSite?: boolean | "lax" | "strict" | "none";
+              secure?: boolean;
+            };
+          }[]
+        ) {
           try {
             cookiesToSet.forEach(({ name, value, options }) => {
               cookieStore.set(name, value, options);
             });
-          } catch (error) {
+          } catch {
             // The `set` method was called from a Server Component.
-            // This can be ignored if you have middleware refreshing
+            // This can be ignored if middleware is refreshing
             // user sessions.
           }
         },
       },
-    },
+    }
   );
 };
