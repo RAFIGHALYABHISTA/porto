@@ -2,6 +2,8 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import { getAchievementsData } from "@/services/achievements";
 
+export const dynamic = 'force-dynamic';
+
 export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
