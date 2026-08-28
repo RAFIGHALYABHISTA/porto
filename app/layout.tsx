@@ -13,12 +13,12 @@ import NextAuthProvider from "@/SessionProvider";
 import { METADATA } from "@/common/constants/metadata";
 import { inter } from "@/common/styles/fonts";
 
+// `DOMAIN` is configured in each deployment environment. Keep a valid fallback
+// so Next.js can also render the built-in not-found page before it is set.
+const metadataBaseUrl = process.env.DOMAIN || "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : process.env.DOMAIN || "",
-  ),
+  metadataBase: new URL(metadataBaseUrl),
   description: METADATA.description,
   keywords: METADATA.keyword,
   creator: METADATA.creator,
@@ -43,7 +43,11 @@ const RootLayout = async ({
   params: { locale: string };
 }>) => {
   const messages = await getMessages();
-  const session = await getServerSession();
+  // NextAuth throws in production when no secret exists. Authentication is
+  // optional, so pages must remain renderable before it is configured.
+  const session = process.env.NEXTAUTH_SECRET
+    ? await getServerSession()
+    : null;
 
   return (
     <html lang={locale} suppressHydrationWarning={true}>
